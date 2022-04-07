@@ -1,2 +1,2 @@
 # gallpeters
-An API to construct a map of countries visited.
+Easily generate and maintain a map of countries. 🌐
