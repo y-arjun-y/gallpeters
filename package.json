@@ -1,0 +1,29 @@
+{
+  "name": "gallpeters",
+  "version": "0.1.0",
+  "description": "Easily create a map of the world with immense customization and an intuitive API. ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y-arjun-y/gallpeters.git"
+  },
+  "keywords": [
+    "nodejs",
+    "api",
+    "node",
+    "express"
+  ],
+  "author": "Arjun Yadav",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/y-arjun-y/gallpeters/issues"
+  },
+  "homepage": "https://github.com/y-arjun-y/gallpeters#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
