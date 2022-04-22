@@ -1,11 +1,10 @@
 {
   "name": "gallpeters",
   "version": "0.1.0",
-  "description": "Easily create a map of the world with immense customization and an intuitive API. ",
+  "description": "Easily create a map of the world with immense customization and an intuitive API.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -14,7 +13,7 @@
   "keywords": [
     "nodejs",
     "api",
-    "node",
+    "map",
     "express"
   ],
   "author": "Arjun Yadav",

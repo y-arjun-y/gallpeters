@@ -5,20 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>gallpeters</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/beech.css@1.0.9/style.css"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="/assets/styles.css" type="text/css" />
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺</text></svg>"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>"
     />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v4.min.js"></script>
+    <script src="/assets/map.js" type="module"></script>
+    <script src="/assets/map.js"></script>
   </head>
   <body>
-    <h2>🗺 gallpeters</h2>
+    <h2>🌐 gallpeters</h2>
     <hr />
-    <h3>Coming soon!</h3>
+    <svg width="680" height="480" id="map"></svg>
+    <h2>1. Select map projection</h2>
+    <div>
+      <button onclick="createMap('gallpeters')">Gall Peters Projection</button>
+      <button onclick="createMap('mercator')">Mercator Projection</button>
+      <button onclick="createMap('winkeltripel')">
+        Winkel Tripel Projection
+      </button>
+    </div>
   </body>
   <footer>
     © 2022 Arjun Yadav -
