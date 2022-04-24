@@ -124,6 +124,11 @@ h6 {
   font-size: 1em;
 }
 
+#step2-heading,
+#step2-subheading {
+  display: none;
+}
+
 /* b) Lists and Navigation Bar */
 ul {
   padding-left: 1.4em;
@@ -342,6 +347,18 @@ input[type="button"]:focus:enabled,
 input[type="button"]:hover:enabled {
   background-color: var(--alt-color);
   outline: 0;
+}
+
+#save-div {
+  display: none;
+  padding: 1.2em;
+}
+
+#save {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 25px;
 }
 
 /* 8. Footer */

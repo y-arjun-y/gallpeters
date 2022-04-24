@@ -1,9 +1,30 @@
+function saveSVG(element, name) {
+  var svgData = element.outerHTML;
+  var preface = '<?xml version="1.0" standalone="no"?>\r\n';
+  var svgBlob = new Blob([preface, svgData], {
+    type: "image/svg+xml;charset=utf-8",
+  });
+  var svgUrl = URL.createObjectURL(svgBlob);
+  var downloadLink = document.createElement("a");
+  downloadLink.href = svgUrl;
+  downloadLink.download = name;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
+
 function createMap(map) {
   const svg = d3.select("#map"),
     width = svg.attr("width"),
     height = svg.attr("height");
 
   svg.style("display", "block");
+
+  document.getElementById("step1-heading").style.opacity = "0.3";
+  document.getElementById("step1-buttons").style.opacity = "0.3";
+  document.getElementById("step2-heading").style.display = "inline";
+  document.getElementById("step2-subheading").style.display = "inline";
+  document.getElementById("save-div").style.display = "block";
 
   const color = {
     mouseSelection: "rgb(0, 170, 255)",

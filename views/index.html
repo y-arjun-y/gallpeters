@@ -18,9 +18,12 @@
   <body>
     <h2>🌐 gallpeters</h2>
     <hr />
-    <svg width="680" height="480" id="map"></svg>
-    <h2>1. Select map projection</h2>
-    <div>
+    <svg id="map" width="680" height="480" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="save-div"><button id="save" onclick="saveSVG(document.getElementById('map'), 'test.svg')">Save</button></div>
+    <h2 id="step2-heading">2. Click the countries you want to select</h2>
+    <h6 id="step2-subheading">(Click again to deselect)</h3>
+    <h2 id="step1-heading">1. Select map projection</h2>
+    <div id="step1-buttons">
       <button onclick="createMap('gallpeters')">Gall Peters Projection</button>
       <button onclick="createMap('mercator')">Mercator Projection</button>
       <button onclick="createMap('winkeltripel')">
