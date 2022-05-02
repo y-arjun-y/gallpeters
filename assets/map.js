@@ -1,17 +1,21 @@
-function saveSVG(element, name) {
-  var svgData = element.outerHTML;
-  var preface = '<?xml version="1.0" standalone="no"?>\r\n';
-  var svgBlob = new Blob([preface, svgData], {
-    type: "image/svg+xml;charset=utf-8",
+function hexToRgb(hex) {
+  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+    return r + r + g + g + b + b;
   });
-  var svgUrl = URL.createObjectURL(svgBlob);
-  var downloadLink = document.createElement("a");
-  downloadLink.href = svgUrl;
-  downloadLink.download = name;
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
+
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+  return `rgb(${parseInt(result[1], 16)}, ${parseInt(
+    result[2],
+    16
+  )}, ${parseInt(result[3], 16)})`;
 }
+
+const color = {
+  mouseSelection: "rgb(0, 170, 255)",
+  selection: "rgb(70, 153, 84)",
+};
 
 function createMap(map) {
   const svg = d3.select("#map"),
@@ -24,12 +28,7 @@ function createMap(map) {
   document.getElementById("step1-buttons").style.opacity = "0.3";
   document.getElementById("step2-heading").style.display = "inline";
   document.getElementById("step2-subheading").style.display = "inline";
-  document.getElementById("save-div").style.display = "block";
-
-  const color = {
-    mouseSelection: "rgb(0, 170, 255)",
-    selection: "rgb(70, 153, 84)",
-  };
+  document.getElementById("button-div").style.display = "flex";
 
   const gallPetersProjection = d3
     .geoCylindricalEqualArea()
@@ -65,7 +64,7 @@ function createMap(map) {
     }
   };
 
-  const tooltipMouseOut = function (d) {
+  const tooltipMouseOut = function () {
     tooltip.transition().duration(500).style("opacity", 0);
 
     if (d3.select(this).style("fill") != color.selection) {
@@ -73,11 +72,13 @@ function createMap(map) {
     }
   };
 
-  const selectionClick = function (d) {
+  const selectionClick = function () {
     if (d3.select(this).style("fill") != color.selection) {
       d3.select(this).style("fill", color.selection);
+      d3.select(this).attr("isSelected", "true");
     } else {
       d3.select(this).style("fill", "white");
+      d3.select(this).attr("isSelected", "false");
     }
   };
 
@@ -141,4 +142,71 @@ function createMap(map) {
       document.getElementById("map").style.right = "1.4em";
     }
   });
+}
+
+function saveSVG(element, name) {
+  var svgData = element.outerHTML;
+  var preface = '<?xml version="1.0" standalone="no"?>\r\n';
+  var svgBlob = new Blob([preface, svgData], {
+    type: "image/svg+xml;charset=utf-8",
+  });
+  var svgUrl = URL.createObjectURL(svgBlob);
+  var downloadLink = document.createElement("a");
+  downloadLink.href = svgUrl;
+  downloadLink.download = name;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
+
+function onClickCustomize() {
+  document.getElementById("customize").style.display = "none";
+  document.getElementById("customize-div").style.display = "block";
+  document.getElementById("reset-customize").style.display = "block";
+  document.getElementById("reset-selection").style.display = "block";
+  document.getElementById("stroke").value = "rgb(0, 0, 0)";
+  document.getElementById("selection").value = "#469954";
+}
+
+function customize() {
+  const svg = d3.select("#map");
+
+  svg.style(
+    "background-color",
+    document.getElementById("background-color").value
+  );
+
+  svg
+    .selectAll("path")
+    .style("stroke", document.getElementById("stroke").value);
+
+  svg
+    .selectAll("[isSelected=true]")
+    .style("fill", document.getElementById("selection").value);
+
+  if (
+    hexToRgb(document.getElementById("selection").value) != "rgb(0, 170, 255)"
+  ) {
+    color.selection = hexToRgb(document.getElementById("selection").value);
+  } else {
+    color.selection = hexToRgb(document.getElementById("selection").value);
+    color.mouseSelection = "rgb(70, 153, 84)";
+  }
+}
+
+function resetCustomize() {
+  document.getElementById("background-color").value = "";
+  document.getElementById("stroke").value = "rgb(0, 0, 0)";
+  document.getElementById("selection").value = "#469954";
+
+  customize();
+}
+
+function resetSelection() {
+  const svg = d3.select("#map");
+
+  svg
+    .selectAll("[isSelected=true]")
+    .style("fill", "white")
+    .attr("isSelected", "false");
 }

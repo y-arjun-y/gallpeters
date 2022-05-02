@@ -303,7 +303,7 @@ label,
 legend,
 fieldset {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: -0.5rem;
   font-weight: 600;
 }
 
@@ -349,16 +349,27 @@ input[type="button"]:hover:enabled {
   outline: 0;
 }
 
-#save-div {
+#button-div {
   display: none;
   padding: 1.2em;
+  gap: 1em;
+  justify-content: center;
 }
 
-#save {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+#button-div button {
   padding: 8px 25px;
+}
+
+#customize-div {
+  display: none;
+}
+
+#reset-customize {
+  display: none;
+}
+
+#reset-selection {
+  display: none;
 }
 
 /* 8. Footer */

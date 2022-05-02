@@ -19,7 +19,20 @@
     <h2>🌐 gallpeters</h2>
     <hr />
     <svg id="map" width="680" height="480" xmlns="http://www.w3.org/2000/svg"></svg>
-    <div id="save-div"><button id="save" onclick="saveSVG(document.getElementById('map'), 'test.svg')">Save</button></div>
+    <div id="button-div">
+      <button id="save" onclick="saveSVG(document.getElementById('map'), 'test.svg')">Save</button>
+      <button id="customize" onclick="onClickCustomize()">Customize (RGB and HEX)</button>
+      <button id="reset-customize" onclick="resetCustomize()">Reset Customization</button>
+      <button id="reset-selection" onclick="resetSelection()">Reset Selection</button>
+      <div id="customize-div">
+      <label>Background colour</label>
+      <input id="background-color" oninput="customize()" />
+      <label>Stroke</label>
+      <input id="stroke" oninput="customize()" />
+      <label>Selection</label>
+      <input id="selection" oninput="customize()" />
+    </div>
+    </div>
     <h2 id="step2-heading">2. Click the countries you want to select</h2>
     <h6 id="step2-subheading">(Click again to deselect)</h3>
     <h2 id="step1-heading">1. Select map projection</h2>
