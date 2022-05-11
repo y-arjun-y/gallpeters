@@ -93,6 +93,9 @@ function createMap(map) {
         .join("path")
         .attr("d", d3.geoPath().projection(gallPetersProjection))
         .attr("country", function (d) {
+          return d.properties.name;
+        })
+        .attr("country-iso", function (d) {
           return d.id;
         })
         .attr("fill", "#fff")
@@ -112,6 +115,9 @@ function createMap(map) {
         .join("path")
         .attr("d", d3.geoPath().projection(mercatorProjection))
         .attr("country", function (d) {
+          return d.properties.name;
+        })
+        .attr("country-iso", function (d) {
           return d.id;
         })
         .attr("fill", "#fff")
@@ -131,6 +137,9 @@ function createMap(map) {
         .join("path")
         .attr("d", d3.geoPath().projection(winkelTripelProjection))
         .attr("country", function (d) {
+          return d.properties.name;
+        })
+        .attr("country-iso", function (d) {
           return d.id;
         })
         .attr("fill", "#fff")
@@ -163,7 +172,6 @@ function onClickCustomize() {
   document.getElementById("customize").style.display = "none";
   document.getElementById("customize-div").style.display = "block";
   document.getElementById("reset-customize").style.display = "block";
-  document.getElementById("reset-selection").style.display = "block";
   document.getElementById("stroke").value = "rgb(0, 0, 0)";
   document.getElementById("selection").value = "#469954";
 }
@@ -176,9 +184,18 @@ function customize() {
     document.getElementById("background-color").value
   );
 
-  svg
-    .selectAll("path")
-    .style("stroke", document.getElementById("stroke").value);
+  if (
+    document.getElementById("stroke").value.indexOf("#") == -1 &&
+    document.getElementById("stroke").value.indexOf("rgb") == -1
+  )
+    svg
+      .selectAll("path")
+      .style("stroke", `#${document.getElementById("stroke").value}`);
+  else {
+    svg
+      .selectAll("path")
+      .style("stroke", document.getElementById("stroke").value);
+  }
 
   svg
     .selectAll("[isSelected=true]")

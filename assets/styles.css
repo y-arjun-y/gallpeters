@@ -37,6 +37,7 @@
   --background-color: #ffffff;
   --alt-color: #00aaff;
   --dark-alt-color: #000000;
+  --link-color: #3070a6;
 }
 
 /*  c) Selection */
@@ -144,6 +145,11 @@ nav a {
   margin-right: 0.5em;
 }
 
+#links {
+  display: flex;
+  gap: 0.5em;
+}
+
 /*  c) Paragraph */
 p {
   margin-top: 0px;
@@ -214,7 +220,7 @@ hr {
 /* 3. Links */
 a {
   text-decoration: none;
-  color: var(--dark-alt-color);
+  color: var(--link-color);
 }
 
 a:hover {
@@ -365,10 +371,6 @@ input[type="button"]:hover:enabled {
 }
 
 #reset-customize {
-  display: none;
-}
-
-#reset-selection {
   display: none;
 }
 
