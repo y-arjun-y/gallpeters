@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Easily create a map of the world with immense customization and an intuitive API.",
   "main": "server.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "node server.js"
   },
