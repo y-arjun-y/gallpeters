@@ -1,8 +1,18 @@
 const express = require("express");
+const helmet = require("helmet");
 const app = express();
 const path = require("path");
 
 const port = 3000;
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "'unsafe-inline'", "d3js.org"],
+      "script-src-attr": "'unsafe-inline'",
+    },
+  })
+);
 
 app.use("/assets", express.static(path.join(__dirname + "/assets")));
 app.use("/scripts", express.static(path.join(__dirname + "/scripts")));
