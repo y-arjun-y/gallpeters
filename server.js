@@ -5,6 +5,13 @@ const path = require("path");
 
 const port = 3000;
 
+app.use(helmet());
+app.use(
+  helmet.frameguard({
+    action: "deny",
+  })
+);
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -34,9 +41,9 @@ app.get("/api/:map", (req, res) => {
     rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>"
     />
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://d3js.org/d3-geo-projection.v4.min.js"></script>
-    <script src="/scripts/map_api.js" type="module"></script>
+    <script crossorigin="anonymous" src="https://d3js.org/d3.v7.min.js"></script>
+    <script crossorigin="anonymous" src="https://d3js.org/d3-geo-projection.v4.min.js"></script>
+    <script crossorigin="anonymous" src="/scripts/map_api.js" type="module"></script>
     <script src="/scripts/map_api.js"></script>
     </head>
     <body>

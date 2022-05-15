@@ -10,33 +10,58 @@
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>"
     />
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://d3js.org/d3-geo-projection.v4.min.js"></script>
+    <script
+      crossorigin="anonymous"
+      src="https://d3js.org/d3.v7.min.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      src="https://d3js.org/d3-geo-projection.v4.min.js"
+    ></script>
     <script src="/scripts/map.js" type="module"></script>
-    <script src="/scripts/map.js"></script>
+    <script crossorigin="anonymous" src="/scripts/map.js"></script>
   </head>
   <body>
     <h2>🌐 gallpeters</h2>
     <hr />
-    <div id="links"><a href="https://github.com/y-arjun-y/gallpeters">GitHub</a><a href="https://arjunyadav.net/analytics">Example</a></div>
-    <hr />
-    <svg id="map" width="680" height="480" xmlns="http://www.w3.org/2000/svg"></svg>
-    <div id="button-div">
-      <button id="save" onclick="saveSVG(document.getElementById('map'), 'test.svg')">Save</button>
-      <button id="reset-selection" onclick="resetSelection()">Reset All Selections</button>
-      <button id="customize" onclick="onClickCustomize()">Customize (RGB and HEX)</button>
-      <button id="reset-customize" onclick="resetCustomize()">Reset Customization</button>
-      <div id="customize-div">
-      <label>Background colour</label>
-      <input id="background-color" oninput="customize()" />
-      <label>Stroke</label>
-      <input id="stroke" oninput="customize()" />
-      <label>Selection</label>
-      <input id="selection" oninput="customize()" />
+    <div id="links">
+      <a href="https://github.com/y-arjun-y/gallpeters">GitHub</a
+      ><a href="https://arjunyadav.net/analytics">Example</a>
     </div>
+    <hr />
+    <svg
+      id="map"
+      width="680"
+      height="480"
+      xmlns="http://www.w3.org/2000/svg"
+    ></svg>
+    <div id="button-div">
+      <button
+        id="save"
+        onclick="saveSVG(document.getElementById('map'), 'test.svg')"
+      >
+        Save
+      </button>
+      <button id="reset-selection" onclick="resetSelection()">
+        Reset All Selections
+      </button>
+      <button id="customize" onclick="onClickCustomize()">
+        Customize (RGB and HEX)
+      </button>
+      <button id="reset-customize" onclick="resetCustomize()">
+        Reset Customization
+      </button>
+      <div id="customize-div">
+        <label>Background colour</label>
+        <input id="background-color" oninput="customize()" />
+        <label>Stroke</label>
+        <input id="stroke" oninput="customize()" />
+        <label>Selection</label>
+        <input id="selection" oninput="customize()" />
+      </div>
     </div>
     <h2 id="step2-heading">2. Click the countries you want to select</h2>
-    <h6 id="step2-subheading">(Click again to deselect)</h3>
+    <h6 id="step2-subheading">(Click again to deselect)</h6>
     <h2 id="step1-heading">1. Select map projection</h2>
     <div id="step1-buttons">
       <button onclick="createMap('gallpeters')">Gall Peters Projection</button>
@@ -46,19 +71,77 @@
       </button>
     </div>
     <h3>or...</h3>
-    <p>Use <code>/api/projection/</code> to create the map (<a href="/api/gallpeters/">e.g.</a>: <code>/api/gallpeters</code>).</p>
+    <p>
+      Use <code>/api/projection/</code> to create the map (<a
+        href="/api/gallpeters/"
+        >e.g.</a
+      >: <code>/api/gallpeters</code>).
+    </p>
     <h4>Selecting countries</h4>
-    <p>Alpha-3 codes can be found <a href="https://www.iban.com/country-codes">here</a>.</p>
-    <p><a href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK">1.</a> <code>/api/projection?select=CHN,IND,USA,IDN,PAK</code></p>
-    <p><a href="/api/gallpeters?select=China,India,USA,IDN,PAK">2.</a> <code>/api/projection?select=China,India,USA,IDN,PAK</code></p>
-    <p><a href="/api/gallpeters?select=China,India,United%20States%20of%20America,Indonesia,Pakistan">3.</a> <code>/api/projection?select=China,India,United States of America,Indonesia,Pakistan</code></p>
-    <p><a href="/api/gallpeters?select=China&select=India">4.</a> <code>/api/projection?select=China&select=India</code></p>
-    <p><a href="/api/gallpeters?select=CHN&select=IND">5.</a> <code>/api/projection?select=CHN&select=IND</code></p>
+    <p>
+      Alpha-3 codes can be found
+      <a href="https://www.iban.com/country-codes">here</a>.
+    </p>
+    <p>
+      <a href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK">1.</a>
+      <code>/api/projection?select=CHN,IND,USA,IDN,PAK</code>
+    </p>
+    <p>
+      <a href="/api/gallpeters?select=China,India,USA,IDN,PAK">2.</a>
+      <code>/api/projection?select=China,India,USA,IDN,PAK</code>
+    </p>
+    <p>
+      <a
+        href="/api/gallpeters?select=China,India,United%20States%20of%20America,Indonesia,Pakistan"
+        >3.</a
+      >
+      <code
+        >/api/projection?select=China,India,United States of
+        America,Indonesia,Pakistan</code
+      >
+    </p>
+    <p>
+      <a href="/api/gallpeters?select=China&select=India">4.</a>
+      <code>/api/projection?select=China&select=India</code>
+    </p>
+    <p>
+      <a href="/api/gallpeters?select=CHN&select=IND">5.</a>
+      <code>/api/projection?select=CHN&select=IND</code>
+    </p>
     <h4>Customization</h4>
-    <p><a href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0">1. </a><code>/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0</code></p>
-    <p><a href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&stroke=rgb(191, 165, 136)">2. </a><code>/api/gallpeters?select=CHN,IND,USA,IDN,PAK&stroke=rgb(191, 165, 136)</code></p>
-    <p><a href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&selection_color=092">3. </a><code>/api/gallpeters?select=CHN,IND,USA,IDN,PAK&selection_color=092</code></p>
-    <p><a href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0&stroke=rgb(191, 165, 136)&selection_color=092">4. </a><code>/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0&stroke=rgb(191, 165, 136)&selection_color=092</code></p>
+    <p>
+      <a
+        href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0"
+        >1. </a
+      ><code
+        >/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0</code
+      >
+    </p>
+    <p>
+      <a
+        href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&stroke=rgb(191, 165, 136)"
+        >2. </a
+      ><code
+        >/api/gallpeters?select=CHN,IND,USA,IDN,PAK&stroke=rgb(191, 165,
+        136)</code
+      >
+    </p>
+    <p>
+      <a href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&selection_color=092"
+        >3. </a
+      ><code
+        >/api/gallpeters?select=CHN,IND,USA,IDN,PAK&selection_color=092</code
+      >
+    </p>
+    <p>
+      <a
+        href="/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0&stroke=rgb(191, 165, 136)&selection_color=092"
+        >4. </a
+      ><code
+        >/api/gallpeters?select=CHN,IND,USA,IDN,PAK&background_color=89CFF0&stroke=rgb(191,
+        165, 136)&selection_color=092</code
+      >
+    </p>
   </body>
   <footer>
     © 2022 Arjun Yadav -
