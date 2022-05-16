@@ -5,13 +5,17 @@ const path = require("path");
 
 const port = 3000;
 
-app.use(helmet());
+app.use(
+  helmet({
+    frameguard: false,
+  })
+);
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
       "script-src": ["'self'", "'unsafe-inline'", "d3js.org"],
       "script-src-attr": "'unsafe-inline'",
-      "frame-ancestors": "'none'",
+      "frame-ancestors": "*",
     },
   })
 );
