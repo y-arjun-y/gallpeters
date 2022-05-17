@@ -48,12 +48,14 @@ app.get("/api/:map", (req, res) => {
     <body>
     <svg
     id="map"
-    width="680"
-    height="480"
+    width="${req.query.width || 680}"
+    height="${req.query.height || 480}"
     xmlns="http://www.w3.org/2000/svg"
     ></svg>
     <script>
-    createMap("${req.params.map}", "${req.query.select}", "${req.query.background_color}", "${req.query.stroke}", "${req.query.selection_color}");
+    createMap("${req.params.map}", "${req.query.select}", "${
+      req.query.background_color
+    }", "${req.query.stroke}", "${req.query.selection_color}");
     </script>
     </body>
     </html>
