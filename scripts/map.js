@@ -1,15 +1,34 @@
 function hexToRgb(hex) {
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-    return r + r + g + g + b + b;
-  });
+  if (hex[0] == "#") {
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+      return r + r + g + g + b + b;
+    });
 
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
-  return `rgb(${parseInt(result[1], 16)}, ${parseInt(
-    result[2],
-    16
-  )}, ${parseInt(result[3], 16)})`;
+    return `rgb(${parseInt(result[1], 16)}, ${parseInt(
+      result[2],
+      16
+    )}, ${parseInt(result[3], 16)})`;
+  }
+
+  if (hex.indexOf("rgb") == -1 && hex.indexOf("$") == -1) {
+    hex = `#${hex}`;
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+      return r + r + g + g + b + b;
+    });
+
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+    return `rgb(${parseInt(result[1], 16)}, ${parseInt(
+      result[2],
+      16
+    )}, ${parseInt(result[3], 16)})`;
+  } else {
+    return hex;
+  }
 }
 
 const color = {
@@ -197,13 +216,12 @@ function customize() {
       .style("stroke", document.getElementById("stroke").value);
   }
 
-  svg
-    .selectAll("[isSelected=true]")
-    .style("fill", document.getElementById("selection").value);
-
   if (
     hexToRgb(document.getElementById("selection").value) != "rgb(0, 170, 255)"
   ) {
+    svg
+      .selectAll("[isSelected=true]")
+      .style("fill", hexToRgb(document.getElementById("selection").value));
     color.selection = hexToRgb(document.getElementById("selection").value);
   } else {
     color.selection = hexToRgb(document.getElementById("selection").value);
